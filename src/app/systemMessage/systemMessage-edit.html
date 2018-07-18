@@ -1,0 +1,70 @@
+<section id="page-title">
+  <div class="row">
+    <h1 class="mainTitle pull-left">{{::vm.title}}</h1>
+
+    <div class="pull-right" ncy-breadcrumb></div>
+  </div>
+</section>
+
+<div class="container-fluid container-fullw">
+  <div class="border-around">
+    <div class="bg-white padding-30">
+      <form class="form-horizontal">
+        <div class="row">
+          <div class="form-group margin-top-10">
+            <label for="inputEmail1" class="col-md-1 control-label">标题:</label>
+            <div class="col-md-11">
+              <input type="text" class="form-control" id="inputEmail1" ng-model="vm.systemMessage.title">
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="margin-top-20">
+            <summernote ng-model="vm.systemMessage.body" height="500" lang="zh-CN"
+                        on-image-upload="vm.imageUpload(files)" editable="vm.editable"
+                        editor="vm.editor"></summernote>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-4 col-md-offset-4">
+            <div class="form-group">
+              <label class="block">是否发布:</label>
+
+              <div class="radio clip-radio radio-primary radio-inline">
+                <input type="radio" id="channel1"value="1"
+                       ng-model="vm.systemMessage.isPublic" name="channels">
+                <label for="channel1">
+                  是
+                </label>
+              </div>
+
+              <div class="radio clip-radio radio-primary radio-inline">
+                <input type="radio" id="channel2"value="0"
+                       ng-model="vm.systemMessage.isPublic" name="channels">
+                <label for="channel2">
+                  否
+                </label>
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+    <div class="center border-top bg-white padding-30">
+      <button type="button"
+              class="btn btn-default btn-wide margin-right-15"
+              ng-click="vm.cancel(vm.stores)">
+        取消
+      </button>
+      <button type="button"
+              class="btn btn-danger btn-wide"
+              ng-disabled="storesForm.$invalid"
+              ng-click="vm.submit(vm.systemMessage)">
+        确定
+      </button>
+    </div>
+  </div>
+
+</div>
+
+

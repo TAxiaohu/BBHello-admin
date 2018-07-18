@@ -1,0 +1,88 @@
+<section id="page-title">
+  <div class="row">
+    <h1 class="mainTitle pull-left">{{::vm.title}}</h1>
+
+    <div class="pull-right" ncy-breadcrumb></div>
+  </div>
+</section>
+<div class="container-fluid container-fullw">
+  <div class="border-around">
+    <div class="bg-white padding-30">
+      <form name="UserForm" novalidate>
+        <div class="row">
+          <div class="col-md-4 col-md-offset-4">
+            <div class="form-group"
+                 ng-class="{'has-error':UserForm.nickname.$dirty && UserForm.nickname.$invalid}">
+              <label><span class="symbol required"></span>用户名:</label>
+              <input ng-model="vm.user.username" name="nickname"
+                     type="text" class="form-control" required/>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-4 col-md-offset-4">
+            <div class="form-group"
+                 ng-class="{'has-error':UserForm.name.$dirty && UserForm.name.$invalid}">
+              <label><span class="symbol required"></span>真实姓名:</label>
+              <input ng-model="vm.user.nickname" name="name"
+                     type="tel" class="form-control"
+                     required/>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-4 col-md-offset-4">
+            <div class="form-group"
+                 ng-class="{'has-error':UserForm.phone.$dirty && UserForm.phone.$invalid}">
+              <label><span class="symbol required"></span>登陆方式:</label>
+              <select class="form-control" ng-model="vm.user.userType">
+                <option value="">请选择</option>
+                <option value="0">app用户</option>
+                <option value="11">微信用户</option>
+                <option value="12">qq用户</option>
+                <option value="13">微博用户</option>
+              </select>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-4 col-md-offset-4">
+            <div class="form-group"
+                 ng-class="{'has-error':UserForm.cellphone.$dirty && UserForm.cellphone.$invalid}">
+              <label><span class="symbol required"></span>手机号:</label>
+              <input ng-model="vm.user.cellphone"
+                     ng-pattern="/^[1][358][0-9]{9}$/" name="cellphone"
+                     type="tel" class="form-control"/>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-4 col-md-offset-4">
+            <div class="form-group"
+                 ng-class="{'has-error':UserForm.gender.$dirty && UserForm.gender.$invalid}">
+              <label><span class="symbol required"></span>性别:</label>
+              <select class="form-control" ng-model="vm.user.gender">
+                <option value="">请选择</option>
+                <option value="0">保密</option>
+                <option value="1">男</option>
+                <option value="2">女</option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+    <div class="center border-top bg-white padding-30">
+      <button type="button"
+              ng-click="vm.cancel()"
+              class="btn btn-default btn-wide margin-right-15">取消
+      </button>
+      <button type="button"
+              ng-click="vm.submit(vm.user)"
+              ng-disabled="UserForm.$invalid"
+              class="btn btn-danger btn-wide">提交
+      </button>
+    </div>
+  </div>
+
+</div>

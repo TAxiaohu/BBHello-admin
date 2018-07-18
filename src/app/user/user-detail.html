@@ -1,0 +1,71 @@
+<section id="page-title">
+  <div class="row">
+    <h1 class="mainTitle pull-left">{{::vm.title}}</h1>
+
+    <div class="pull-right" ncy-breadcrumb></div>
+  </div>
+</section>
+<div class="container-fluid container-fullw">
+  <div class="border-around">
+    <div class="bg-white padding-30">
+      <form class="form-horizontal">
+        <div class="row">
+          <div class="form-group col-md-4">
+            <label class="col-md-3 control-label">用户名称:</label>
+            <div class="form-group col-md-9">
+              <input class="form-control" ng-model="vm.user.nickname" disabled="disabled"/>
+            </div>
+          </div>
+  <!--        <div class="form-group col-md-4">
+            <label  class="col-md-3 control-label">用户手机:</label>
+            <div class="col-md-9">
+              <input class="form-control" ng-model="vm.user.cellphone" disabled="disabled"/>
+            </div>
+          </div>-->
+          <div class="form-group col-md-4">
+            <label  class="col-md-3 control-label">用户身份:</label>
+            <div class="col-md-9">
+              <input class="form-control" ng-model="vm.user.level" disabled="disabled"/>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+    <table ng-if="vm.agentU != undefined" ng-table="vm.tableParams" class="table custom-table">
+      <thead>
+      <tr>
+        <th>姓名</th>
+        <th>性别</th>
+        <th>电话</th>
+        <th>状态</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr  ng-repeat="customer in vm.agent">
+        <td>{{customer.customerName}}</td>
+        <td>{{customer.gender | UserGenderStatus}}</td>
+        <td>{{customer.customerPhone}}</td>
+        <td>{{customer.status | userStatus}}</td>
+      </tr>
+      </tbody>
+    </table>
+    <div ng-if="vm.agentU == undefined" class="empty-box">
+      <div class="no-content">
+        <i class="ti-alert"></i>
+        <h5>该用户没有录入用户</h5>
+      </div>
+    </div>
+    <div class="center border-top bg-white padding-30">
+      <button type="button"
+              class="btn btn-info btn-wide"
+              ng-click="vm.back()">
+        返回
+      </button>
+      <!--  <button type="button"
+                ng-click="vm.submit(vm.technician)"
+                ng-disabled="TechnicianForm.$invalid"
+                class="btn btn-danger btn-wide">订单取消
+        </button>-->
+    </div>
+  </div>
+</div>

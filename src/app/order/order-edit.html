@@ -1,0 +1,137 @@
+<section id="page-title">
+  <div class="row">
+    <h1 class="mainTitle pull-left">{{::vm.title}}</h1>
+
+    <div class="pull-right" ncy-breadcrumb></div>
+  </div>
+</section>
+<div class="container-fluid container-fullw">
+  <div class="border-around">
+    <div class="bg-white padding-30">
+      <form class="form-horizontal">
+        <div class="row">
+          <div class="form-group col-md-4">
+            <label class="col-md-3 control-label">订单号:</label>
+
+            <div class="col-md-9">
+              <input class="form-control" ng-model="vm.order.outTradeNo" disabled="disabled"/>
+            </div>
+          </div>
+          <div class="form-group col-md-4">
+            <label class="col-md-3 control-label">套餐名称:</label>
+
+            <div class="col-md-9">
+              <input class="form-control" ng-model="vm.order.goodsId" disabled="disabled"/>
+            </div>
+          </div>
+          <div class="form-group col-md-4">
+            <label class="col-md-3 control-label">价格:</label>
+
+            <div class="col-md-9">
+              <input class="form-control" ng-model="vm.order.amount" disabled="disabled"/>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="form-group col-md-4">
+            <label class="col-md-3 control-label">下单时间:</label>
+
+            <div class="col-md-9">
+              <!--<input class="form-control" ng-model="vm.order.createTime" disabled="disabled"/>-->
+              <div class="form-control">{{vm.order.createTime | date:'yyyy-MM-dd HH:mm'}}</div>
+            </div>
+          </div>
+          <div class="form-group col-md-4">
+            <label class="col-md-3 control-label">状态:</label>
+
+            <div class="col-md-9">
+              <input class="form-control" ng-model="vm.order.payStatus" disabled="disabled"/>
+            </div>
+          </div>
+          <div class="form-group col-md-4">
+            <label class="col-md-3 control-label">联系人:</label>
+
+            <div class="col-md-9">
+              <input class="form-control" ng-model="vm.order.name" disabled="disabled"/>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="form-group col-md-4">
+            <label class="col-md-3 control-label">订单电话:</label>
+
+            <div class="col-md-9">
+              <input class="form-control" ng-model="vm.order.cellphone" disabled="disabled"/>
+            </div>
+          </div>
+          <div class="form-group col-md-4">
+            <label class="col-md-3 control-label">所在区域:</label>
+
+            <div class="col-md-9">
+              <input class="form-control" ng-model="vm.order.fullAddress" disabled="disabled"/>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+    <table ng-table="vm.tableParams" class="table custom-table">
+      <thead>
+      <tr>
+        <th>行程名称</th>
+        <th>步骤完成时间</th>
+        <th>备注</th>
+        <th>行程状态</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr ng-repeat="orderJourney in vm.dataArry">
+        <td>{{orderJourney.stepName}}</td>
+        <td>{{orderJourney.updateTime | date:'yyyy-MM-dd hh:mm:ss'}}</td>
+        <td ng-if="orderJourney.remark != null" style="width: 400px">
+          <input class="form-control" ng-model="orderJourney.remark"
+                 style="min-width: 250px;width: 300px"/>
+        </td>
+        <td ng-if="orderJourney.remark == null" style="width: 400px">
+          <input class="form-control" ng-model="orderJourney.remark" type="text"
+                 maxlength="70" style="min-width: 250px;width: 300px"/>
+        </td>
+        <td>
+          <span ng-if="orderJourney.stepStatus === 2">{{orderJourney.stepStatus | orderJourneyType}}</span>
+          <button ng-if="orderJourney.stepId === vm.stepId && orderJourney.stepStatus === 0"
+                  type="button" class="btn btn-success"
+                  ng-click="vm.nextStep(orderJourney,orderJourney.remark)">
+            完成
+          </button>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+<div class="row">
+    <div class="form-group col-md-4" ng-repeat="img in vm.imgs">
+      <div class="col-md-9">
+        <div class="clearfix">
+          <div class="license-pic">
+            <img ng-src="{{img.pictureUri}}"
+                 alt=""/>
+          </div>
+        </div>
+      </div>
+    </div>
+</div>
+    <div class="row">
+      <div class="center border-top bg-white padding-30">
+        <button type="button"
+                class="btn btn-info btn-wide"
+                ng-click="vm.back()">
+          返回
+        </button>
+        <!--  <button type="button"
+                  ng-click="vm.submit(vm.technician)"
+                  ng-disabled="TechnicianForm.$invalid"
+                  class="btn btn-danger btn-wide">订单取消
+          </button>-->
+      </div>
+    </div>
+  </div>
+
+</div>

@@ -1,0 +1,148 @@
+<!-- start: PAGE TITLE -->
+<section id="page-title">
+  <div class="row">
+    <h1 class="mainTitle pull-left">订单列表</h1>
+
+    <div class="pull-right" ncy-breadcrumb></div>
+  </div>
+</section>
+<!-- end: PAGE TITLE -->
+
+<!-- start: USER PROFILE -->
+<section class="search-form-wrapper">
+  <form class="form-horizontal row">
+    <div class="form-group col-md-4">
+      <label class="col-md-3 control-label">订单号：</label>
+      <div class="col-md-9">
+        <input class="form-control" type="text" ng-model="vm.queryParams.outTradeNo">
+      </div>
+    </div>
+    <div class="form-group col-md-4">
+      <label class="col-md-3 control-label">下单人用户名：</label>
+      <div class="col-md-9">
+        <input class="form-control" type="text" ng-model="vm.queryParams.userCellphone">
+      </div>
+    </div>
+    <div class="form-group col-md-4">
+      <label class="col-md-3 control-label">下单经纪人用户名：</label>
+      <div class="col-md-9">
+        <input class="form-control" type="text" ng-model="vm.queryParams.brokerCellphone">
+      </div>
+    </div>
+    <div class="form-group col-md-4">
+      <label class="col-md-3 control-label">预约联系人名称：</label>
+      <div class="col-md-9">
+        <input class="form-control" type="text" ng-model="vm.queryParams.name">
+      </div>
+    </div>
+    <div class="form-group col-md-4">
+      <label class="col-md-3 control-label">预约联系人电话：</label>
+      <div class="col-md-9">
+        <input class="form-control" type="text" ng-model="vm.queryParams.cellphone">
+      </div>
+    </div>
+    <div class="form-group col-md-4">
+      <label class="col-md-3 control-label">套餐名称：</label>
+      <div class="col-md-9">
+        <select class="form-control" ng-model="vm.queryParams.goodsId">
+          <option value="">请选择</option>
+          <option value="1">生育专项旅游体检套餐</option>
+          <option value="2">单次试管婴儿套餐</option>
+          <option value="3">两次试管婴儿套餐</option>
+          <option value="4">乐生备孕营99元套餐</option>
+        </select>
+      </div>
+    </div>
+      <div class="form-group col-md-4">
+          <label class="col-md-3 control-label">下单时间：</label>
+          <div class="col-md-9">
+              <div class=" input-group">
+                  <input type="text" class="form-control min-width-100" datepicker-popup="yyyy-MM-dd"
+                         ng-model="vm.queryParams.beginTime"
+                         is-open="vm.startOpened"
+                         min-date="'1970-12-31'"
+                         max-date="end"
+                         close-text="关闭"
+                         ng-click="vm.startOpen($event)"/>
+                  <span class="input-group-addon">至</span>
+                  <input type="text" class="form-control min-width-100" datepicker-popup="yyyy-MM-dd"
+                         ng-model="vm.queryParams.endTime"
+                         is-open="vm.endOpened"
+                         min-date="vm.queryParams.beginTime"
+                         close-text="关闭"
+                         ng-click="vm.endOpen($event)"/>
+              </div>
+          </div>
+      </div>
+  </form>
+  <div class="center">
+    <button type="button"
+            ng-click="vm.search(vm.queryParams)"
+            class="btn btn-primary  btn-scroll btn-scroll-top ti-search btn-wide margin-right-15">
+      <span>搜&nbsp;&nbsp;索</span>
+    </button>
+    <button type="button" ng-click="vm.reset(vm.queryParams)"
+            class="btn btn-default  btn-scroll  btn-scroll-top btn-wide ti-close">
+      <span>清&nbsp;&nbsp;空</span>
+    </button>
+  </div>
+</section>
+
+<!--<div class="pull-left margin-bottom-20">
+  <button ng-click="vm.gotoCreate()"
+          type="submit" class="btn btn-primary btn-scroll btn-scroll-top ti-plus btn-wide">
+    <span>新&nbsp;&nbsp;增</span>
+  </button>
+  <button ng-click="vm.batchRemove(vm.selectDealer)"
+          type="submit"
+          class="btn btn-danger btn-scroll btn-scroll-top ti-trash btn-wide margin-left-15">
+    <span>删除</span>
+  </button>
+</div>-->
+
+<table ng-table="vm.tableParams" class="table custom-table">
+  <thead>
+  <tr>
+   <!-- <th><input type="checkbox" class="margin-left-10" ng-model="vm.isAll" ng-change="vm.checkAll()"></th>-->
+    <th>订单号</th>
+    <th>用户名称</th>
+    <th>订单联系电话</th>
+    <th>套餐名称</th>
+    <th>价格</th>
+    <!--<th>订单联系人</th>-->
+    <th>下单时间</th>
+    <th>状态</th>
+    <th>操作</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr ng-repeat="order in vm.order">
+    <!--<td><input type="checkbox" class="margin-left-10" checklist-model="vm.selectDealer"
+               checklist-value="dealers.companyId"></td>-->
+    <td>{{order.outTradeNo}}</td>
+    <td>{{order.name}}</td>
+    <td>{{order.cellphone}}</td>
+    <td>{{order.goodsId | orderNameType}}</td>
+    <td>{{order.goodsPrice}}</td>
+    <!--<td>156156</td>-->
+    <td>{{order.createTime | date:'yyyy-MM-dd HH:mm:ss'}}</td>
+    <td>{{order.payStatus | orderSatus}}</td>
+    <td>
+      <button type="button"
+              ng-click="vm.gotoEdit(order)"
+              tooltip="编辑" tooltip-placement="top"
+              class="btn btn-primary btn-xs margin-left-5 btn-color-cust">
+        <i class="ti-pencil"></i>
+      </button>
+    </td>
+  </tr>
+  </tbody>
+</table>
+<div ng-if="vm.order.length === 0" class="empty-box">
+  <div class="no-content">
+    <i class="ti-alert"></i>
+    <h5>无结果，可更改筛选条件，继续。</h5>
+  </div>
+</div>
+
+<!-- end: USER PROFILE -->

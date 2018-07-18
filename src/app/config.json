@@ -1,0 +1,26 @@
+{
+  "local": {
+    "config": {
+      "apiUrl": "http://51ssss.sudaotech.com/platform",
+      "imageUrl": "http://51ssss.sudaotech.com/platform/image"
+    }
+  },
+  "test": {
+    "config": {
+      "apiUrl": "http://51ssss.sudaotech.com/platform",
+      "imageUrl": "http://51ssss.sudaotech.com/platform/image"
+    }
+  },
+  "production": {
+    "config": {
+      "apiUrl": "http://51ssss.sudaotech.com/platform",
+      "imageUrl": "http://51ssss.sudaotech.com/platform/image"
+    }
+  },
+  "needReplace": {
+    "config": {
+      "apiUrl": "http://51ssss.sudaotech.com/platform",
+      "imageUrl": "http://51ssss.sudaotech.com/platform/image"
+    }
+  }
+}

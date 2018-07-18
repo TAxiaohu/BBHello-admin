@@ -1,0 +1,24 @@
+<!-- toaster directive -->
+<toaster-container toaster-options="{'position-class': 'toast-top-right', 'close-button':true}"></toaster-container>
+<!-- / toaster directive -->
+<!-- sidebar -->
+<div class="sidebar app-aside" id="sidebar" toggleable parent-active-class="app-slide-off" >
+  <div perfect-scrollbar wheel-propagation="false" suppress-scroll-x="true" class="sidebar-container">
+    <div data-ng-include=" 'app/components/sidebar/sidebar.html' "></div>
+  </div>
+</div>
+<!-- / sidebar -->
+<div class="app-content" ng-class="{loading: loading}">
+  <!-- top navbar -->
+  <header data-ng-include=" 'app/components/navbar/navbar.html' " class="navbar navbar-default navbar-static-top"></header>
+  <!-- / top navbar -->
+  <!-- main content -->
+  <div class="main-content" >
+    <div ui-view class="wrap-content container fade-in-up" id="container"></div>
+  </div>
+  <!-- / main content -->
+</div>
+<!-- footer -->
+<footer data-ng-include=" 'app/core/views/footer.html' "></footer>
+<!-- / footer -->
+<div data-ng-include=" 'app/core/views/off-sidebar.html' " id="off-sidebar" class="sidebar" toggleable parent-active-class="app-offsidebar-open"></div>

@@ -1,0 +1,34 @@
+<!-- start: PAGE TITLE -->
+<section id="page-title">
+  <div class="row">
+    <div class="col-sm-8">
+      <h1 class="mainTitle">医院详情</h1>
+      <!--<span class="mainDescription">There are many systems which have a need for user profile pages which display personal information on each member.</span>-->
+    </div>
+    <div ncy-breadcrumb></div>
+  </div>
+</section>
+<!-- end: PAGE TITLE -->
+
+<div class="container-fluid container-fullw bg-white">
+  <div class="row">
+    <div class="col-md-12">
+      <tabset class="tabbable">
+        <tab heading="医院信息">
+          <h2 class="margin-bottom-25 margin-top-25">{{vm.hospital.name}}</h2>
+
+          <p>
+            {{vm.hospital.summary}}
+          </p>
+
+          <div ng-bind-html="vm.hospital.description"></div>
+        </tab>
+        <tab heading="拥有医生">
+
+        </tab>
+      </tabset>
+
+
+    </div>
+  </div>
+</div>

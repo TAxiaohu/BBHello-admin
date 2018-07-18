@@ -1,0 +1,126 @@
+<!-- start: PAGE TITLE -->
+<section id="page-title">
+  <div class="row">
+    <div class="col-sm-8">
+      <h1 class="mainTitle">{{::vm.title}}</h1>
+      <!--<span class="mainDescription">There are many systems which have a need for user profile pages which display personal information on each member.</span>-->
+    </div>
+    <div ncy-breadcrumb></div>
+  </div>
+</section>
+<!-- end: PAGE TITLE -->
+
+<!-- start: USER PROFILE -->
+<section class="search-form-wrapper">
+  <form class="form-horizontal row">
+    <div class="form-group col-md-4">
+      <label class="col-md-3 control-label">标题名称：</label>
+
+      <div class="col-md-9">
+        <input class="form-control" type="text" ng-model="vm.queryParams.title">
+      </div>
+    </div>
+    <div class="form-group col-md-4">
+      <label class="col-md-3 control-label">发布状态：</label>
+
+      <div class="col-md-9">
+        <select class="form-control" ng-model="vm.queryParams.publicStatus">
+          <option value="">请选择</option>
+          <option value="0">不公开</option>
+          <option value="1">公开</option>
+        </select>
+      </div>
+    </div>
+    <div class="form-group col-md-4">
+      <label class="col-md-3 control-label">创建时间：</label>
+      <div class="col-md-9">
+        <div class=" input-group">
+          <input type="text" class="form-control min-width-100" datepicker-popup="yyyy-MM-dd"
+                 ng-model="vm.queryParams.beginTime"
+                 is-open="vm.startOpened"
+                 min-date="'1970-12-31'"
+                 max-date="end"
+                 close-text="关闭"
+                 ng-click="vm.startOpen($event)"/>
+          <span class="input-group-addon">至</span>
+          <input type="text" class="form-control min-width-100" datepicker-popup="yyyy-MM-dd"
+                 ng-model="vm.queryParams.endTime"
+                 is-open="vm.endOpened"
+                 min-date="vm.queryParams.beginTime"
+                 close-text="关闭"
+                 ng-click="vm.endOpen($event)"/>
+        </div>
+      </div>
+    </div>
+  </form>
+  <div class="center">
+    <button type="button"
+            ng-click="vm.search(vm.queryParams)"
+            class="btn btn-primary  btn-scroll btn-scroll-top ti-search btn-wide margin-right-15">
+      <span>搜&nbsp;&nbsp;索</span>
+    </button>
+    <button type="button" ng-click="vm.reset(vm.queryParams)"
+            class="btn btn-default  btn-scroll  btn-scroll-top btn-wide ti-close">
+      <span>清&nbsp;&nbsp;空</span>
+    </button>
+  </div>
+</section>
+
+<div class="pull-left margin-bottom-20">
+  <button ng-click="vm.gotoCreate()"
+          type="submit" class="btn btn-primary btn-scroll btn-scroll-top ti-plus btn-wide">
+    <span>新&nbsp;&nbsp;增</span>
+  </button>
+<!--  <button ng-click="vm.batchRemove(vm.selectDealer)"
+          type="submit"
+          class="btn btn-danger btn-scroll btn-scroll-top ti-trash btn-wide margin-left-15">
+    <span>删除</span>
+  </button>-->
+</div>
+
+<table ng-table="vm.tableParams" class="table custom-table">
+  <thead>
+  <tr>
+    <!--<th><input type="checkbox" class="margin-left-10" ng-model="vm.isAll" ng-change="vm.checkAll()"></th>-->
+    <th>标题名称</th>
+    <th>摘要</th>
+    <th>优先级</th>
+    <th>状态</th>
+    <th>发布时间</th>
+    <th>操作</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr ng-repeat="article in vm.article">
+    <!--<td><input type="checkbox" class="margin-left-10" checklist-model="vm.selectDealer"
+               checklist-value="article.contentId"></td>-->
+    <td><span class="text-nowrap">{{article.title}}</span></td>
+    <td><span class="text-nowrap">{{article.summary}}</span></td>
+    <td>{{article.displayOrder}}</td>
+    <td>{{article.isPublic | systemMessageType}}</td>
+    <td>{{article.publicTime | date:'yyyy-MM-dd'}}</td>
+    <td>
+      <button type="button"
+              ng-click="vm.gotoEdit(article)"
+              tooltip="编辑" tooltip-placement="top"
+              class="btn btn-primary btn-xs margin-left-5 btn-color-cust">
+        <i class="ti-pencil"></i>
+      </button>
+      <button type="button"
+              ng-click="vm.gotoRemove(article)"
+              tooltip="删除" tooltip-placement="top"
+              class="btn btn-primary btn-xs margin-left-5 btn-color-cust">
+        <i class="ti-trash"></i>
+      </button>
+    </td>
+  </tr>
+  </tbody>
+</table>
+<div ng-if="vm.article.length === 0" class="empty-box">
+  <div class="no-content">
+    <i class="ti-alert"></i>
+    <h5>无结果，可更改筛选条件，继续。</h5>
+  </div>
+</div>
+
+<!-- end: USER PROFILE -->

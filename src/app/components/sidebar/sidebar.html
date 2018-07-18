@@ -1,0 +1,93 @@
+<!-- start: SIDEBAR -->
+<nav>
+  <!-- start: MAIN NAVIGATION MENU -->
+  <!--<div class="navbar-title">
+    <span>Main Navigation</span>
+  </div>-->
+  <ul class="main-navigation-menu">
+    <!--<li ui-sref-active="active">
+      <a ui-sref="app.dashboard">
+        <div class="item-content">
+          <div class="item-media">
+            <i class="ti-home"></i>
+          </div>
+          <div class="item-inner">
+            <span class="title"> Dashboard </span>
+          </div>
+        </div>
+      </a>
+    </li>
+    <li ng-class="{'active open':$state.includes('app.administrator')}">
+      <a ui-sref="app.administrator.list">
+        <div class="item-content">
+          <div class="item-media">
+            <i class="ti-crown"></i>
+          </div>
+          <div class="item-inner">
+            <span class="title"> 管理员管理 </span>
+          </div>
+        </div>
+      </a>
+    </li>-->
+    <li ng-class="{'active':$state.includes('app.user')}">
+      <a ui-sref="app.user.list">
+        <div class="item-content">
+          <div class="item-media">
+            <i class="ti-user"></i>
+          </div>
+          <div class="item-inner">
+            <span class="title"> 用户管理 </span>
+          </div>
+        </div>
+      </a>
+    </li>
+    <li ng-class="{'active':$state.includes('app.order')}">
+      <a ui-sref="app.order.list">
+        <div class="item-content">
+          <div class="item-media">
+            <i class="ti-receipt"></i>
+          </div>
+          <div class="item-inner">
+            <span class="title"> 订单管理 </span>
+          </div>
+        </div>
+      </a>
+    </li>
+    <li ng-class="{'active open':$state.includes('app.consulting') || $state.includes('app.article') || $state.includes('app.report') || $state.includes('app.technology')}">
+      <a href="javascript:void(0)">
+        <div class="item-content">
+          <div class="item-media">
+            <i class="ti-write"></i>
+          </div>
+          <div class="item-inner">
+            <span class="title"> 资讯案列管理 </span><i class="icon-arrow"></i>
+          </div>
+        </div>
+      </a>
+      <ul class="sub-menu">
+        <li ng-class="{'active': $state.includes('app.consulting')}">
+          <a ui-sref="app.consulting.list">
+            <span class="title">热门资讯列表</span>
+          </a>
+        </li>
+        <li ng-class="{'active': $state.includes('app.article')}">
+          <a ui-sref="app.article.list">
+            <span class="title">成功案列列表</span>
+          </a>
+        </li>
+        <li ng-class="{'active': $state.includes('app.report')}">
+          <a ui-sref="app.report.list">
+            <span class="title">新闻报道列表</span>
+          </a>
+        </li>
+        <li ng-class="{'active': $state.includes('app.technology')}">
+          <a ui-sref="app.technology.list">
+            <span class="title">试管婴儿技术列表</span>
+          </a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+  <!-- end: MAIN NAVIGATION MENU -->
+</nav>
+<!-- end: SIDEBAR -->

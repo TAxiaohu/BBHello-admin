@@ -1,0 +1,88 @@
+<section id="page-title">
+  <div class="row">
+    <h1 class="mainTitle pull-left">{{::vm.title}}</h1>
+
+    <div class="pull-right" ncy-breadcrumb></div>
+  </div>
+</section>
+<div class="container-fluid container-fullw">
+  <div class="border-around">
+    <div class="bg-white padding-30">
+      <form name="TechnicianForm" novalidate>
+        <div class="row">
+          <div class="col-md-4 col-md-offset-4">
+            <div class="form-group"
+                 ng-class="{'has-error':TechnicianForm.name.$dirty && TechnicianForm.name.$invalid}">
+              <label><span class="symbol required"></span>用户名:</label>
+              <input ng-model="vm.technician.name" name="name"
+                     type="text" class="form-control" required/>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-4 col-md-offset-4">
+            <div class="form-group"
+                 ng-class="{'has-error':TechnicianForm.phone.$dirty && TechnicianForm.phone.$invalid}">
+              <label><span class="symbol required"></span>姓名:</label>
+              <input ng-model="vm.technician.phone" name="phone"
+                     type="tel" class="form-control"
+                     required/>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-4 col-md-offset-4">
+            <div class="form-group"
+                 ng-class="{'has-error':TechnicianForm.email.$dirty && TechnicianForm.email.$invalid}">
+              <label><span class="symbol"></span>手机号:</label>
+              <input ng-model="vm.technician.email" name="email"
+                     type="text" class="form-control"/>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-4 col-md-offset-4">
+            <div class="form-group"
+                 ng-class="{'has-error':TechnicianForm.address.$dirty && TechnicianForm.address.$invalid}">
+              <label><span class="symbol"></span>角色:</label>
+              <input ng-model="vm.technician.address" name="address"
+                     type="text" class="form-control"/>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-4 col-md-offset-4">
+            <div class="form-group"
+                 ng-class="{'has-error':TechnicianForm.workPeriod.$dirty && TechnicianForm.workPeriod.$invalid}">
+              <label><span class="symbol"></span>密码:</label>
+              <input ng-model="vm.technician.workPeriod" name="workPeriod"
+                     type="text" class="form-control"/>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-4 col-md-offset-4">
+            <div class="form-group"
+                 ng-class="{'has-error':TechnicianForm.idCardNo.$dirty && TechnicianForm.idCardNo.$invalid}">
+              <label><span class="symbol"></span>确认密码:</label>
+              <input ng-model="vm.technician.idCardNo" name="idCardNo"
+                     type="text" class="form-control"/>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+    <div class="center border-top bg-white padding-30">
+      <button type="button"
+              ng-click="vm.cancel()"
+              class="btn btn-default btn-wide margin-right-15">取消
+      </button>
+      <button type="button"
+              ng-click="vm.submit(vm.technician)"
+              ng-disabled="TechnicianForm.$invalid"
+              class="btn btn-danger btn-wide">提交
+      </button>
+    </div>
+  </div>
+
+</div>

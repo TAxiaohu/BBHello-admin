@@ -1,0 +1,68 @@
+.license-pic {
+  position: relative;
+  overflow: hidden;
+  float: left;
+  width: 240px;
+  height: 240px;
+  display: -webkit-flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 20px;
+  margin-bottom: 20px;
+  background: #eee;
+  &:hover {
+    .mask {
+      opacity: 1;
+    }
+  }
+  .mask {
+    opacity: 0;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, .5);
+    display: -webkit-flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 72px;
+    color: #fff;
+    cursor: pointer;
+  }
+  img {
+    width: 100%;
+  }
+}
+
+.btn-file {
+  width: 240px;
+  height: 240px;
+  display: -webkit-flex;
+  justify-content: center;
+  align-items: center;
+  background: #eee;
+  cursor: pointer;
+  &.bg-btn-file {
+    width: 240px;
+    height: 240px;
+    font-size: 72px;
+  }
+  input[type=file] {
+    width: 100%;
+    height: 100%;
+  }
+}
+.marTop{
+  margin-top:23px;
+}
+.btn-search-width{
+  width: 80px;
+}
+.text-nowrap {
+  display:block;
+  text-overflow:ellipsis;
+  overflow: hidden;
+  white-space:nowrap;
+  width: 200px;
+}

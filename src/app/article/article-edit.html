@@ -1,0 +1,141 @@
+<section id="page-title">
+  <div class="row">
+    <h1 class="mainTitle pull-left">{{::vm.title}}</h1>
+
+    <div class="pull-right" ncy-breadcrumb></div>
+  </div>
+</section>
+
+<div class="container-fluid container-fullw">
+  <div class="border-around">
+    <div class="bg-white padding-30">
+      <form class="form-horizontal" name="ArticleForm" novalidate>
+        <div class="row">
+          <div class="form-group margin-top-10"
+               ng-class="{'has-error':ArticleForm.title.$dirty && ArticleForm.title.$invalid}">
+            <label for="inputEmail1" class="col-md-1 control-label"><span class="symbol required"></span>标题:</label>
+
+            <div class="col-md-11">
+              <input type="text" class="form-control" id="inputEmail1" name="title" placeholder="请输入标题内容"
+                     ng-model="vm.article.title" required>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="form-group margin-top-10"
+               ng-class="{'has-error':ArticleForm.summary.$dirty && ArticleForm.summary.$invalid}">
+            <label for="inputEmail1" class="col-md-1 control-label"><span class="symbol required"></span>摘要:</label>
+
+            <div class="col-md-11">
+              <input type="text" class="form-control"  name="summary" placeholder="请输入摘要内容"
+                     ng-model="vm.article.summary" required>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="form-group margin-top-10">
+            <label for="inputEmail1" class="col-md-1 control-label"><span class="symbol"></span>优先级:</label>
+
+            <div class="col-md-11">
+              <input type="text" class="form-control"  name="displayOrder" placeholder="请输入优先级"
+                     ng-model="vm.article.displayOrder">
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="form-group margin-top-10">
+            <label for="inputEmail4" class="col-md-1 control-label">发布时间:</label>
+
+            <div class="col-md-11">
+              <p class="input-group">
+                <input type="text" id="inputEmail4" class="form-control"
+                       datepicker-popup="{{vm.calendar.dateFormat}}"
+                       ng-model="vm.article.publicTime"
+                       is-open="vm.calendar.opened"
+                       datepicker-options="vm.calendar.dateOptions" close-text="关闭"
+                       show-weeks="true"
+                       current-text="今天" clear-text="清除" required/>
+              <span class="input-group-btn">
+                <button type="button" class="btn btn-default"
+                        ng-click="vm.calendar.selectDate($event,vm.article.publicTime)">
+                  <i class="glyphicon glyphicon-calendar"></i>
+                </button>
+
+              </span>
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="margin-top-20">
+            <summernote ng-model="vm.article.body" height="500" lang="zh-CN"
+                        on-image-upload="vm.imageUpload(files)" editable="vm.editable"
+                        editor="vm.editor"></summernote>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-4 col-md-offset-4">
+            <div class="form-group">
+              <label class="block">是否发布:</label>
+
+              <div class="radio clip-radio radio-primary radio-inline">
+                <input type="radio" id="channel1" value="1"
+                       ng-model="vm.article.isPublic" name="channels">
+                <label for="channel1">
+                  是
+                </label>
+              </div>
+
+              <div class="radio clip-radio radio-primary radio-inline">
+                <input type="radio" id="channel2" value="0"
+                       ng-model="vm.article.isPublic" name="channels">
+                <label for="channel2">
+                  否
+                </label>
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+      <div class="row margin-bottom-20">
+        <div class="col-md-4 col-md-offset-4">
+          <label><span class="symbol required"></span>标题照:</label>
+
+          <div class="clearfix">
+            <div class="license-pic" ng-repeat="picture in vm.uplpadParams1.pictures"
+                 tooltip="你确定要删除吗?" tooltip-placement="top"
+                 ng-click="vm.delPicture1($index)">
+              <img ng-src="{{picture.pictureUri}}" alt=""/>
+
+              <div class="mask">
+                <i class="ti-close"></i>
+              </div>
+            </div>
+            <div ng-if="vm.uplpadParams1.pictures.length < vm.uplpadParams1.maxCount" class="btn-file bg-btn-file"
+                 tooltip="添加图片"
+                 tooltip-placement="top">
+              <i class="ti-plus"></i>
+              <input type="file" nv-file-select uploader="vm.uploaderImages1"/>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="center border-top bg-white padding-30">
+      <button type="button"
+              class="btn btn-default btn-wide margin-right-15"
+              ng-click="vm.cancel(vm.article)">
+        取消
+      </button>
+      <button type="button"
+              class="btn btn-danger btn-wide"
+              ng-disabled="ArticleForm.$invalid"
+              ng-click="vm.submit(vm.article)">
+        确定
+      </button>
+    </div>
+  </div>
+
+</div>
+
+

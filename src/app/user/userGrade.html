@@ -1,0 +1,26 @@
+<div class="modal-header">
+  <h3 class="modal-title">更新密码</h3>
+</div>
+<div class="modal-body">
+  <form name="passwordForm" novalidate>
+    <div class="form-group"
+         ng-class="{'has-error' : !passwordForm.password2.$pristine && passwordForm.password2.$invalid }">
+      <label><span class="symbol required"></span>身份:</label>
+      <select ng-model="vm.userGrade" class="form-control">
+        <option value="">请选择</option>
+        <option value="0">普通身份</option>
+        <option value="1">普通经纪人</option>
+        <option value="2">金牌经纪人</option>
+      </select>
+    </div>
+  </form>
+</div>
+
+<div class="modal-footer">
+  <button class="btn btn-default" ng-click="vm.exit()"  data-dismiss="modal">
+    取消
+  </button>
+  <button class="btn btn-primary" ng-click="vm.submit(vm.userGrade)" ng-disabled="passwordForm.$invalid">
+    确定
+  </button>
+</div>

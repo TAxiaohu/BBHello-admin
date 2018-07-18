@@ -1,0 +1,99 @@
+<!-- start: PAGE TITLE -->
+<section id="page-title">
+  <div class="row">
+    <h1 class="mainTitle pull-left">管理员</h1>
+
+    <div class="pull-right" ncy-breadcrumb></div>
+  </div>
+</section>
+<!-- end: PAGE TITLE -->
+
+<!-- start: USER PROFILE -->
+<section class="search-form-wrapper">
+  <form class="form-horizontal row">
+    <div class="form-group col-md-4">
+      <label class="col-md-3 control-label">用户名：</label>
+      <div class="col-md-9">
+        <input class="form-control" type="text" ng-model="vm.queryParams.userName">
+      </div>
+    </div>
+    <div class="form-group col-md-4">
+      <label class="col-md-3 control-label">最后登录IP：</label>
+      <div class="col-md-9">
+        <input class="form-control" type="text" ng-model="vm.queryParams.userId">
+      </div>
+    </div>
+  </form>
+  <div class="center">
+    <button type="button"
+            ng-click="vm.search(vm.queryParams)"
+            class="btn btn-primary  btn-scroll btn-scroll-top ti-search btn-wide margin-right-15">
+      <span>搜&nbsp;&nbsp;索</span>
+    </button>
+    <button type="button" ng-click="vm.reset(vm.queryParams)"
+            class="btn btn-default  btn-scroll  btn-scroll-top btn-wide ti-close">
+      <span>清&nbsp;&nbsp;空</span>
+    </button>
+  </div>
+</section>
+
+<div class="pull-left margin-bottom-20">
+  <button ng-click="vm.gotoCreate()"
+          type="submit" class="btn btn-primary btn-scroll btn-scroll-top ti-plus btn-wide">
+    <span>新&nbsp;&nbsp;增</span>
+  </button>
+  <button ng-click="vm.batchRemove(vm.selectDealer)"
+          type="submit"
+          class="btn btn-danger btn-scroll btn-scroll-top ti-trash btn-wide margin-left-15">
+    <span>删除</span>
+  </button>
+</div>
+
+<table ng-table="vm.tableParams" class="table custom-table">
+  <thead>
+  <tr>
+    <th><input type="checkbox" class="margin-left-10" ng-model="vm.isAll" ng-change="vm.checkAll()"></th>
+    <th>用户名</th>
+    <th>最后登录ID</th>
+    <th>最后登录时间</th>
+    <th>操作</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr>
+    <td><input type="checkbox" class="margin-left-10" checklist-model="vm.selectDealer"
+               checklist-value="dealers.companyId"></td>
+    <td>admin</td>
+    <td>192.168.0.0</td>
+    <td>20215-10-10</td>
+    <td>
+      <button type="button"
+              ng-click="vm.gotoEdit()"
+              tooltip="编辑" tooltip-placement="top"
+              class="btn btn-primary btn-xs margin-left-5 btn-color-cust">
+        <i class="ti-pencil"></i>
+      </button>
+      <button type="button"
+              ng-click="vm.gotoRemove()"
+              tooltip="删除" tooltip-placement="top"
+              class="btn btn-primary btn-xs margin-left-5 btn-color-cust">
+        <i class="ti-trash"></i>
+      </button>
+      <button type="button"
+              ng-click="vm.gotoRemove()"
+              tooltip="停用" tooltip-placement="top"
+              class="btn btn-primary btn-xs margin-left-5 btn-color-cust">
+        <i class="ti-hand-stop"></i>
+      </button>
+    </td>
+  </tr>
+  </tbody>
+</table>
+<div ng-if="vm.dealers.length === 0" class="empty-box">
+  <div class="no-content">
+    <i class="ti-alert"></i>
+    <h5>无结果，可更改筛选条件，继续。</h5>
+  </div>
+</div>
+
+<!-- end: USER PROFILE -->
